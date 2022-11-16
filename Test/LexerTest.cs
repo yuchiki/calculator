@@ -1,6 +1,4 @@
 using Calculator;
-using Xunit;
-
 
 namespace Test
 {
