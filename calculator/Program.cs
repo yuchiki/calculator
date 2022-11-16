@@ -1,3 +1,14 @@
-﻿Calculator.Lexer lexer = new() { Input = "12+3*456/(7+8)+9" };
+﻿Console.WriteLine("数式を入力してね！ 例: 1+23*4/(5-6)");
 
-lexer.Tokenize().ForEach(Console.WriteLine);
+
+string? input;
+
+do
+{
+    input = Console.ReadLine();
+} while (input == null);
+
+
+Calculator.Lexer lexer = new() { Input = input };
+Calculator.Parser parser = new() { Tokens = lexer.Tokenize().ToArray() };
+Console.WriteLine(parser.Parse().PrettyPrint);
