@@ -2,51 +2,50 @@ namespace Calculator
 {
     public class Lexer
     {
-        public required string RawString { private get; init; }
-        private int Position { get; set; }
+        public required string Input { get; set; }
 
         public List<Token> Tokenize()
         {
             List<Token> tokens = new();
 
-            while (Position < RawString.Length)
+            while (Input.Length > 0)
             {
-                switch (RawString[Position])
+                switch (Input[0])
                 {
                     case ' ':
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case >= '0' and <= '9':
                         (int value, int length) = ReadNumber();
                         tokens.Add(new Number(value));
-                        Position += length;
+                        Input = Input[length..];
                         break;
                     case '+':
                         tokens.Add(new Plus());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case '-':
                         tokens.Add(new Minus());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case '*':
                         tokens.Add(new Asterisk());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case '/':
                         tokens.Add(new Slash());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case '(':
                         tokens.Add(new LParen());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     case ')':
                         tokens.Add(new RParen());
-                        Position++;
+                        Input = Input[1..];
                         break;
                     default:
-                        throw new Exception($"parse error: unexpected '{tokens[Position]}'");
+                        throw new Exception($"parse error: unexpected '{Input[0]}'");
                 }
             }
 
@@ -59,9 +58,9 @@ namespace Calculator
             int length = 0;
             int value = 0;
 
-            while (Position + length < RawString.Length && RawString[Position + length] is >= '0' and <= '9')
+            while (length < Input.Length && Input[length] is >= '0' and <= '9')
             {
-                value = (value * 10) + (RawString[Position + length] - '0');
+                value = (value * 10) + (Input[length] - '0');
                 length++;
             }
 
