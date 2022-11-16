@@ -10,39 +10,39 @@ namespace Calculator
 
             while (Input.Length > 0)
             {
-                switch (Input[0])
+                switch (Input)
                 {
-                    case ' ':
-                        Input = Input[1..];
+                    case [' ', .. var rest]:
+                        Input = rest;
                         break;
-                    case >= '0' and <= '9':
+                    case [>= '0' and <= '9', ..]:
                         (int value, int length) = ReadNumber();
-                        tokens.Add(new Number(value));
+                        tokens.Add(new TNumber(value));
                         Input = Input[length..];
                         break;
-                    case '+':
+                    case ['+', .. var rest]:
                         tokens.Add(new Plus());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
-                    case '-':
+                    case ['-', .. var rest]:
                         tokens.Add(new Minus());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
-                    case '*':
+                    case ['*', .. var rest]:
                         tokens.Add(new Asterisk());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
-                    case '/':
+                    case ['/', .. var rest]:
                         tokens.Add(new Slash());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
-                    case '(':
+                    case ['(', .. var rest]:
                         tokens.Add(new LParen());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
-                    case ')':
+                    case [')', .. var rest]:
                         tokens.Add(new RParen());
-                        Input = Input[1..];
+                        Input = rest;
                         break;
                     default:
                         throw new Exception($"parse error: unexpected '{Input[0]}'");

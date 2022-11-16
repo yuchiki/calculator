@@ -7,7 +7,7 @@ namespace Test
         [Fact]
         public void 数字がtokenizeできる()
         {
-            Assert.Equal(new Lexer { Input = "123" }.Tokenize()[0], new Number(123));
+            Assert.Equal(new Lexer { Input = "123" }.Tokenize()[0], new TNumber(123));
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Test
         {
             Assert.Equal(new Lexer { Input = "1 + 2" }.Tokenize(),
        new Token[]{
-                new Number(1), new Plus(), new Number(2)
+                new TNumber(1), new Plus(), new TNumber(2)
         });
         }
 
@@ -55,19 +55,19 @@ namespace Test
         {
             Assert.Equal(new Lexer { Input = "12 + 3 * 456 / (7 + 8) + 9" }.Tokenize(),
             new Token[]{
-                new Number(12),
+                new TNumber(12),
                 new Plus(),
-                new Number(3),
+                new TNumber(3),
                 new Asterisk(),
-                new Number(456),
+                new TNumber(456),
                 new Slash(),
                 new LParen(),
-                new Number(7),
+                new TNumber(7),
                 new Plus(),
-                new Number(8),
+                new TNumber(8),
                 new RParen(),
                 new Plus(),
-                new Number(9)
+                new TNumber(9)
             });
         }
     }
