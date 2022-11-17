@@ -18,7 +18,7 @@ while (true)
         Calculator.Parser parser = new() { Tokens = lexer.Tokenize().ToArray() };
         Calculator.Expr expr = parser.Parse();
 
-        Console.WriteLine(expr.PrettyPrint);
+        Console.WriteLine(Calculator.PrettyPrinter.PrettyPrint(expr));
         Console.WriteLine($"=> {Calculator.Executor.ExecExpr(expr)}");
 
     }
