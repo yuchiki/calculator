@@ -11,25 +11,22 @@ namespace Calculator
     public record Add(Expr Lhs, Expr Rhs) : Expr
     {
         public override string PrettyPrint =>
-            "+\n" + Indenter.Indent(Lhs.PrettyPrint) + Indenter.Indent(Rhs.PrettyPrint);
+            "+\n" + Indenter.Indent("左:" + Lhs.PrettyPrint) + Indenter.Indent("右:" + Rhs.PrettyPrint);
     };
     public record Sub(Expr Lhs, Expr Rhs) : Expr
     {
         public override string PrettyPrint =>
-    "-\n" + Indenter.Indent(Lhs.PrettyPrint) + Indenter.Indent(Rhs.PrettyPrint);
-
+            "-\n" + Indenter.Indent("左:" + Lhs.PrettyPrint) + Indenter.Indent("右:" + Rhs.PrettyPrint);
     };
     public record Mul(Expr Lhs, Expr Rhs) : Expr
     {
         public override string PrettyPrint =>
-    "*\n" + Indenter.Indent(Lhs.PrettyPrint) + Indenter.Indent(Rhs.PrettyPrint);
-
+            "*\n" + Indenter.Indent("左:" + Lhs.PrettyPrint) + Indenter.Indent("右:" + Rhs.PrettyPrint);
     }
     public record Div(Expr Lhs, Expr Rhs) : Expr
     {
         public override string PrettyPrint =>
-    "/\n" + Indenter.Indent(Lhs.PrettyPrint) + Indenter.Indent(Rhs.PrettyPrint);
-
+            "/\n" + Indenter.Indent("左:" + Lhs.PrettyPrint) + Indenter.Indent("右:" + Rhs.PrettyPrint);
     }
 
     internal static class Indenter
