@@ -67,7 +67,7 @@ namespace Calculator
         {
             switch (Tokens)
             {
-                case [TNumber { Num: var num }, .. var rest]:
+                case [TNumber(var num), .. var rest]:
                     Tokens = rest;
                     return new Number(num);
                 case [LParen, .. var rest]:
